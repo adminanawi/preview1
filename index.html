@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eswatini Government Performance Hub — FY 2024/25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0c1117; --surface:#151c25; --surface2:#1a2332; --border:#243044;
+  --text:#e4e8ef; --text2:#8899aa;
+  --accent:#3b82f6; --accent2:#22d3ee; --green:#22c55e; --amber:#f59e0b;
+  --red:#ef4444; --purple:#a855f7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* TOPBAR */
+.topbar{background:linear-gradient(135deg,#0f1923,#1a2a3f);border-bottom:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.topbar h1{font-family:'DM Serif Display',serif;font-size:22px;color:var(--accent2);letter-spacing:.5px}
+.topbar .subtitle{color:var(--text2);font-size:12px;margin-top:3px}
+.badge{background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
+
+/* HERO */
+.hero{padding:56px 40px 40px;max-width:980px;margin:0 auto;text-align:center}
+.hero-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent2);margin-bottom:14px}
+.hero-title{font-family:'DM Serif Display',serif;font-size:46px;line-height:1.15;color:var(--text);margin-bottom:18px}
+.hero-title span{color:var(--accent2)}
+.hero-body{font-size:15px;color:var(--text2);line-height:1.8;max-width:740px;margin:0 auto 32px}
+
+/* POA STRIPE */
+.poa-stripe{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 28px;margin:0 40px 48px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
+.poa-stripe-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);margin-right:4px}
+.obj-chip{display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600}
+.oc1{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);color:#93c5fd}
+.oc2{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#86efac}
+.oc3{background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.35);color:#d8b4fe}
+.oc4{background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.35);color:#5eead4}
+.oc5{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#fcd34d}
+.oc6{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fca5a5}
+.obj-chip .dot{width:7px;height:7px;border-radius:50%}
+
+/* CARDS SECTION */
+.cards-label{text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text2);margin-bottom:24px}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:0 40px 60px;max-width:1200px;margin:0 auto}
+.dash-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;text-decoration:none;color:inherit}
+.dash-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.card-accent-bar{height:4px}
+.bar-initiatives{background:linear-gradient(90deg,#3b82f6,#22d3ee)}
+.bar-operational{background:linear-gradient(90deg,#a855f7,#22c55e)}
+.bar-budget{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+.card-icon-area{padding:28px 28px 20px;display:flex;align-items:flex-start;gap:16px}
+.card-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.ci-blue{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3)}
+.ci-purple{background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.3)}
+.ci-amber{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3)}
+.card-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text);line-height:1.2;margin-bottom:6px}
+.card-sub{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--text2)}
+.card-body{padding:0 28px 24px;font-size:13px;color:var(--text2);line-height:1.75;flex:1}
+.card-meta{padding:16px 28px;border-top:1px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:space-between}
+.meta-stats{display:flex;gap:20px}
+.meta-stat{text-align:center}
+.meta-stat .val{font-family:'DM Serif Display',serif;font-size:20px;font-weight:700}
+.meta-stat .lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-top:1px}
+.ms-blue .val{color:var(--accent)}.ms-purple .val{color:var(--purple)}.ms-amber .val{color:var(--amber)}
+.card-cta{font-size:12px;font-weight:600;color:var(--accent2);display:flex;align-items:center;gap:5px}
+.card-cta .arrow{transition:transform .2s}
+.dash-card:hover .arrow{transform:translateX(4px)}
+
+/* HOW TO USE */
+.how-section{max-width:960px;margin:0 auto;padding:0 40px 60px}
+.how-title{font-family:'DM Serif Display',serif;font-size:24px;color:var(--text);margin-bottom:20px;text-align:center}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.how-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+.how-card .step{font-family:'DM Serif Display',serif;font-size:32px;color:var(--accent2);line-height:1;margin-bottom:10px}
+.how-card h4{font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px}
+.how-card p{font-size:12px;color:var(--text2);line-height:1.7}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:0 40px 48px}
+
+/* FOOTER */
+.footer{text-align:center;padding:28px 40px;border-top:1px solid var(--border);font-size:11px;color:var(--text2);line-height:1.8}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>Eswatini Government Performance Hub</h1>
+    <div class="subtitle">Financial Year 2024/25 · Parliamentary Annual Reports · Kingdom of Eswatini</div>
+  </div>
+  <span class="badge">Confidential</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Prime Minister's Performance Intelligence Suite</div>
+  <h1 class="hero-title">Monitoring the <span>Nkwe Programme</span><br>of Action 2024–2029</h1>
+  <p class="hero-body">
+    This hub consolidates performance data from all 21 parliamentary annual reports into three purpose-built dashboards aligned to the Government Programme of Action (PoA) 2024/2025–2028/2029. Each dashboard addresses a distinct question: <em>What is government doing?</em> — <em>How well is government performing?</em> — <em>How effectively is government spending?</em>
+  </p>
+</div>
+
+<!-- POA STRIPE -->
+<div class="poa-stripe">
+  <span class="poa-stripe-label">6 PoA Objectives:</span>
+  <span class="obj-chip oc1"><span class="dot" style="background:#3b82f6"></span>1 · Economic Growth</span>
+  <span class="obj-chip oc2"><span class="dot" style="background:#22c55e"></span>2 · Infrastructure &amp; ICT</span>
+  <span class="obj-chip oc3"><span class="dot" style="background:#a855f7"></span>3 · Human Capital</span>
+  <span class="obj-chip oc4"><span class="dot" style="background:#14b8a6"></span>4 · Food Sovereignty</span>
+  <span class="obj-chip oc5"><span class="dot" style="background:#f59e0b"></span>5 · Social Protection</span>
+  <span class="obj-chip oc6"><span class="dot" style="background:#ef4444"></span>6 · National Security</span>
+</div>
+
+<!-- DASHBOARD CARDS -->
+<div class="cards-label">Choose a Dashboard</div>
+<div class="cards-grid">
+
+  <!-- INITIATIVES -->
+  <a href="PM_Government_Initiatives_Dashboard.html" class="dash-card">
+    <div class="card-accent-bar bar-initiatives"></div>
+    <div class="card-icon-area">
+      <div class="card-icon ci-blue">🗂</div>
+      <div>
+        <div class="card-sub">Dashboard 1</div>
+        <div class="card-title">Government Initiatives Tracker</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Answers the question: <strong style="color:var(--accent2)">What is government doing?</strong></p>
+      <br>
+      <p>A catalogue of all active government initiatives, programmes, and projects drawn from all 21 ministerial reports. Each initiative is mapped to its PoA objective, implementation status, and source ministry, enabling the Prime Minister to track progress across the full scope of the government agenda in a single view.</p>
+      <br>
+      <p>Use this dashboard to identify which objectives have the most activity, which initiatives are on track versus delayed, and to drill down into individual ministry programme portfolios.</p>
+    </div>
+    <div class="card-meta">
+      <div class="meta-stats">
+        <div class="meta-stat ms-blue"><div class="val">21</div><div class="lbl">Ministries</div></div>
+        <div class="meta-stat ms-blue"><div class="val">6</div><div class="lbl">Objectives</div></div>
+        <div class="meta-stat ms-blue"><div class="val">5</div><div class="lbl">Filter axes</div></div>
+      </div>
+      <div class="card-cta">Open Dashboard <span class="arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- OPERATIONAL -->
+  <a href="Eswatini_Operational_Performance_Dashboard.html" class="dash-card">
+    <div class="card-accent-bar bar-operational"></div>
+    <div class="card-icon-area">
+      <div class="card-icon ci-purple">📊</div>
+      <div>
+        <div class="card-sub">Dashboard 2</div>
+        <div class="card-title">Operational Performance</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Answers the question: <strong style="color:#d8b4fe">How well is government performing?</strong></p>
+      <br>
+      <p>Tracks quantified operational and service delivery indicators drawn from the parliamentary reports — targets versus actuals — organised by the six PoA objectives. Each objective page presents KPI cards, visualisations, and expandable ministry panels with indicator-level status pills: Exceeded, On Track, Below Target, or Gap.</p>
+      <br>
+      <p>Use this dashboard for PM briefings, Cabinet performance reviews, and to identify where service delivery is meeting — or falling short of — the PoA commitments for the current financial year.</p>
+    </div>
+    <div class="card-meta">
+      <div class="meta-stats">
+        <div class="meta-stat ms-purple"><div class="val">100+</div><div class="lbl">Indicators</div></div>
+        <div class="meta-stat ms-purple"><div class="val">7</div><div class="lbl">Views</div></div>
+        <div class="meta-stat ms-purple"><div class="val">6</div><div class="lbl">Objectives</div></div>
+      </div>
+      <div class="card-cta">Open Dashboard <span class="arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- BUDGET -->
+  <a href="Eswatini_Budget_Absorption_Dashboard.html" class="dash-card">
+    <div class="card-accent-bar bar-budget"></div>
+    <div class="card-icon-area">
+      <div class="card-icon ci-amber">💰</div>
+      <div>
+        <div class="card-sub">Dashboard 3</div>
+        <div class="card-title">Budget Absorption Cross-Cut</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Answers the question: <strong style="color:#fcd34d">How effectively is government spending?</strong></p>
+      <br>
+      <p>A cross-ministry fiscal analysis comparing each ministry's annual budget allocation against actual and committed expenditure for FY 2024/25. Budget absorption rates are tracked for all 19 ministries with available data, grouped by PoA objective, and rated: Strong (≥90%), On Track (80–89%), Below Target (60–79%), or Concern (&lt;60%).</p>
+      <br>
+      <p>Use this dashboard to identify ministries with underspending risk or over-expenditure pressure, assess the fiscal distribution across the six PoA objectives, and support Supplementary Budget and National Budget cycle decisions.</p>
+    </div>
+    <div class="card-meta">
+      <div class="meta-stats">
+        <div class="meta-stat ms-amber"><div class="val">E32.9B</div><div class="lbl">Allocated</div></div>
+        <div class="meta-stat ms-amber"><div class="val">87.7%</div><div class="lbl">Overall</div></div>
+        <div class="meta-stat ms-amber"><div class="val">19</div><div class="lbl">Ministries</div></div>
+      </div>
+      <div class="card-cta">Open Dashboard <span class="arrow">→</span></div>
+    </div>
+  </a>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW TO USE -->
+<div class="how-section">
+  <h2 class="how-title">How to Use This Suite</h2>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="step">1</div>
+      <h4>For Cabinet or Parliamentary Briefings</h4>
+      <p>Open the <strong>Operational Performance Dashboard</strong> and navigate to the relevant PoA objective tab. Use the ministry panels to discuss specific indicator performance against targets. Status pills provide an at-a-glance readiness picture.</p>
+    </div>
+    <div class="how-card">
+      <div class="step">2</div>
+      <h4>For Programme Oversight</h4>
+      <p>Open the <strong>Initiatives Tracker</strong> and filter by ministry or PoA objective. Review implementation status across all active programmes. Use the status and source filters to surface delayed or off-track initiatives requiring ministerial attention.</p>
+    </div>
+    <div class="how-card">
+      <div class="step">3</div>
+      <h4>For Budget &amp; Fiscal Review</h4>
+      <p>Open the <strong>Budget Absorption Dashboard</strong> to review expenditure performance by ministry and objective. Identify under-absorbing ministries early, flag over-expenditure pressures, and assess which objectives are receiving proportionate resourcing.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Kingdom of Eswatini · Office of the Prime Minister · Government Performance Intelligence Suite</p>
+  <p style="margin-top:4px">Source: Parliamentary Annual Performance Reports FY 2024/25 (April 2024 – January/February 2025) · Government Programme of Action 2024/2025–2028/2029</p>
+  <p style="margin-top:4px">This document is classified <strong>CONFIDENTIAL</strong> and intended for use by authorised Government officials only.</p>
+</div>
+
+</body>
+</html>

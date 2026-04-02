@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG Reference — Eswatini Government Initiatives</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+
+:root {
+  --bg: #0c1117;
+  --surface: #151c25;
+  --surface2: #1a2332;
+  --border: #243044;
+  --text: #e4e8ef;
+  --text2: #8899aa;
+  --accent: #3b82f6;
+  --accent2: #22d3ee;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+.topbar { background:linear-gradient(135deg,#0f1923,#1a2a3f); border-bottom:1px solid var(--border); padding:16px 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+.topbar h1 { font-family:'DM Serif Display',serif; font-size:20px; color:var(--accent2); }
+.topbar .subtitle { color:var(--text2); font-size:12px; margin-top:2px; }
+.back-btn { background:transparent; border:1px solid var(--border); color:var(--text2); padding:8px 20px; border-radius:8px; cursor:pointer; font-size:13px; font-family:inherit; transition:all .2s; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+.back-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+.container { max-width:1200px; margin:0 auto; padding:32px 24px; }
+
+.intro { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px; margin-bottom:32px; }
+.intro h2 { font-family:'DM Serif Display',serif; font-size:28px; color:var(--accent2); margin-bottom:12px; }
+.intro p { color:var(--text2); font-size:14px; line-height:1.7; max-width:800px; }
+.intro .stats-row { display:flex; gap:32px; margin-top:20px; flex-wrap:wrap; }
+.intro .stat { text-align:center; }
+.intro .stat .num { font-family:'DM Serif Display',serif; font-size:36px; font-weight:700; color:var(--accent); }
+.intro .stat .lbl { font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1.5px; margin-top:2px; }
+
+.sdg-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+.sdg-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; display:grid; grid-template-columns:80px 1fr; transition:transform .2s, border-color .2s; }
+.sdg-card:hover { transform:translateY(-2px); border-color:var(--accent); }
+.sdg-card.inactive { opacity:0.4; }
+.sdg-badge { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 8px; color:#fff; font-weight:700; }
+.sdg-badge .num { font-family:'DM Serif Display',serif; font-size:32px; line-height:1; }
+.sdg-badge .icon { font-size:20px; margin-top:4px; }
+.sdg-body { padding:16px 20px; display:flex; flex-direction:column; gap:6px; }
+.sdg-body h3 { font-size:16px; font-weight:700; }
+.sdg-body .desc { color:var(--text2); font-size:13px; line-height:1.5; }
+.sdg-body .eswatini { font-size:12px; line-height:1.5; margin-top:4px; }
+.sdg-body .eswatini strong { color:var(--accent2); font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+.sdg-count { display:inline-block; background:rgba(34,211,238,0.1); color:var(--accent2); padding:3px 10px; border-radius:12px; font-size:11px; font-weight:600; margin-top:6px; align-self:flex-start; }
+
+.legend-section { margin-top:40px; }
+.legend-section h2 { font-family:'DM Serif Display',serif; font-size:22px; color:var(--accent2); margin-bottom:16px; }
+.legend-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+.legend-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.legend-card h4 { font-size:12px; color:var(--text2); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; }
+.legend-item { display:flex; align-items:center; gap:10px; padding:6px 0; }
+.legend-dot { width:12px; height:12px; border-radius:3px; flex-shrink:0; }
+.legend-item span { font-size:13px; }
+
+.poa-section { margin-top:40px; }
+.poa-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.poa-card { background:var(--surface); border-left:4px solid; border-radius:0 12px 12px 0; padding:20px; border-top:1px solid var(--border); border-right:1px solid var(--border); border-bottom:1px solid var(--border); }
+.poa-card .obj-num { font-family:'DM Serif Display',serif; font-size:28px; opacity:0.3; float:right; margin-top:-4px; }
+.poa-card h4 { font-size:14px; font-weight:700; margin-bottom:6px; }
+.poa-card p { font-size:12px; color:var(--text2); line-height:1.5; }
+.poa-card .budget { font-size:13px; font-weight:600; margin-top:8px; }
+
+@media(max-width:900px) { .legend-grid { grid-template-columns:1fr; } .poa-grid { grid-template-columns:1fr; } .sdg-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>SDG Goals &amp; Dashboard Reference Guide</h1>
+    <div class="subtitle">Sustainable Development Goals • PoA Objectives • Status Legend</div>
+  </div>
+  <a class="back-btn" href="PM_Government_Initiatives_Dashboard.html">&#8592; Back to Dashboard</a>
+</div>
+
+<div class="container">
+
+<div class="intro">
+  <h2>How Eswatini’s Initiatives Map to Global Goals</h2>
+  <p>The Kingdom of Eswatini’s Government Programme of Action (2024/25–2028/29) aligns with the United Nations Sustainable Development Goals (SDGs). Of the 289 tracked initiatives, 140 are explicitly linked to one or more SDGs. Below is a reference guide showing each SDG, its relevance to Eswatini’s government programmes, and the number of initiatives that support it.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="num">289</div><div class="lbl">Total Initiatives</div></div>
+    <div class="stat"><div class="num">140</div><div class="lbl">SDG-Linked</div></div>
+    <div class="stat"><div class="num">13</div><div class="lbl">SDGs Referenced</div></div>
+    <div class="stat"><div class="num">21</div><div class="lbl">Ministries</div></div>
+  </div>
+</div>
+
+<div class="sdg-grid">
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#E5243B">
+    <div class="num">1</div>
+    <div class="icon">🏠</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#E5243B">SDG 1: No Poverty</h3>
+    <div class="desc">End poverty in all its forms everywhere</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Social protection, vulnerable households, OVC grants, decent housing</div>
+    <div class="sdg-count">9 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#DDA63A">
+    <div class="num">2</div>
+    <div class="icon">🌾</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#DDA63A">SDG 2: Zero Hunger</h3>
+    <div class="desc">End hunger, achieve food security and improved nutrition</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Agriculture production, food sovereignty, grain reserves, irrigation, livestock</div>
+    <div class="sdg-count">15 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#4C9F38">
+    <div class="num">3</div>
+    <div class="icon">❤️</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#4C9F38">SDG 3: Good Health and Well-Being</h3>
+    <div class="desc">Ensure healthy lives and promote well-being for all</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> HIV/AIDS (95-95-95), disease prevention, health facilities, NCD control, maternal health</div>
+    <div class="sdg-count">23 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#C5192D">
+    <div class="num">4</div>
+    <div class="icon">📚</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#C5192D">SDG 4: Quality Education</h3>
+    <div class="desc">Ensure inclusive and equitable quality education</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Free primary education, STEM curriculum, TVET, university, computer labs, scholarships</div>
+    <div class="sdg-count">26 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#FF3A21">
+    <div class="num">5</div>
+    <div class="icon">⚧️</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#FF3A21">SDG 5: Gender Equality</h3>
+    <div class="desc">Achieve gender equality and empower all women and girls</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> GBV prevention, gender mainstreaming, disability inclusion, women in economy</div>
+    <div class="sdg-count">4 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#26BDE2">
+    <div class="num">6</div>
+    <div class="icon">💧</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#26BDE2">SDG 6: Clean Water and Sanitation</h3>
+    <div class="desc">Ensure availability and sustainable management of water</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Portable water infrastructure, dam construction, EWSC services, sanitation</div>
+    <div class="sdg-count">3 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#FCC30B">
+    <div class="num">7</div>
+    <div class="icon">⚡</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#FCC30B">SDG 7: Affordable and Clean Energy</h3>
+    <div class="desc">Ensure access to affordable, reliable, sustainable energy</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Renewable energy, rural electrification, strategic oil reserve, 100% access</div>
+    <div class="sdg-count">12 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#A21942">
+    <div class="num">8</div>
+    <div class="icon">📈</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#A21942">SDG 8: Decent Work and Economic Growth</h3>
+    <div class="desc">Promote sustained, inclusive economic growth and decent work</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> MSME development, employment, informal sector, AGOA, trade, investment</div>
+    <div class="sdg-count">23 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card inactive">
+  <div class="sdg-badge" style="background:#FD6925">
+    <div class="num">9</div>
+    <div class="icon">🏗️</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#FD6925">SDG 9: Industry, Innovation and Infrastructure</h3>
+    <div class="desc">Build resilient infrastructure, promote industrialization</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Not explicitly referenced in current reports</div>
+    <div class="sdg-count" style="opacity:0.4">Not referenced in current initiatives</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#DD1367">
+    <div class="num">10</div>
+    <div class="icon">⚖️</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#DD1367">SDG 10: Reduced Inequalities</h3>
+    <div class="desc">Reduce inequality within and among countries</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Social protection, disability inclusion, regional equity</div>
+    <div class="sdg-count">1 initiative linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#FD9D24">
+    <div class="num">11</div>
+    <div class="icon">🏙️</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#FD9D24">SDG 11: Sustainable Cities and Communities</h3>
+    <div class="desc">Make cities inclusive, safe, resilient and sustainable</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Housing, urban development, spatial planning, smart cities</div>
+    <div class="sdg-count">2 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card inactive">
+  <div class="sdg-badge" style="background:#BF8B2E">
+    <div class="num">12</div>
+    <div class="icon">♻️</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#BF8B2E">SDG 12: Responsible Consumption and Production</h3>
+    <div class="desc">Ensure sustainable consumption and production patterns</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Not explicitly referenced in current reports</div>
+    <div class="sdg-count" style="opacity:0.4">Not referenced in current initiatives</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#3F7E44">
+    <div class="num">13</div>
+    <div class="icon">🌍</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#3F7E44">SDG 13: Climate Action</h3>
+    <div class="desc">Take urgent action to combat climate change</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> National Adaptation Plan, climate-smart agriculture, green economy, disaster risk</div>
+    <div class="sdg-count">4 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card inactive">
+  <div class="sdg-badge" style="background:#0A97D9">
+    <div class="num">14</div>
+    <div class="icon">🐟</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#0A97D9">SDG 14: Life Below Water</h3>
+    <div class="desc">Conserve and sustainably use oceans, seas and marine resources</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Eswatini is landlocked — not directly applicable</div>
+    <div class="sdg-count" style="opacity:0.4">Not referenced in current initiatives</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#56C02B">
+    <div class="num">15</div>
+    <div class="icon">🌳</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#56C02B">SDG 15: Life on Land</h3>
+    <div class="desc">Protect, restore and promote sustainable use of terrestrial ecosystems</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Wetlands policy, environmental protection, EEA, biodiversity</div>
+    <div class="sdg-count">6 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card">
+  <div class="sdg-badge" style="background:#00689D">
+    <div class="num">16</div>
+    <div class="icon">⚖️</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#00689D">SDG 16: Peace, Justice and Strong Institutions</h3>
+    <div class="desc">Promote peaceful societies, access to justice, accountable institutions</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Legal aid, anti-corruption, rule of law, data protection, cyber security</div>
+    <div class="sdg-count">12 initiatives linked</div>
+  </div>
+</div>
+
+<div class="sdg-card inactive">
+  <div class="sdg-badge" style="background:#19486A">
+    <div class="num">17</div>
+    <div class="icon">🤝</div>
+  </div>
+  <div class="sdg-body">
+    <h3 style="color:#19486A">SDG 17: Partnerships for the Goals</h3>
+    <div class="desc">Strengthen means of implementation and revitalize partnerships</div>
+    <div class="eswatini"><strong>Eswatini relevance:</strong> Not explicitly referenced in current reports</div>
+    <div class="sdg-count" style="opacity:0.4">Not referenced in current initiatives</div>
+  </div>
+</div>
+
+</div>
+
+<div class="legend-section">
+<h2>Dashboard Legend</h2>
+<div class="legend-grid">
+
+<div class="legend-card">
+  <h4>Implementation Status</h4>
+  <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div><span><strong>Not Started</strong> — Approved but no implementation activity recorded</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div><span><strong>In Progress</strong> — Active implementation underway with evidence in reports</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#22d3ee"></div><span><strong>Finalizing</strong> — Near completion, in final stages of delivery</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div><span><strong>Completed</strong> — Deliverable achieved with evidence submitted</span></div>
+</div>
+
+<div class="legend-card">
+  <h4>Budget Status</h4>
+  <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div><span><strong>On Target</strong> — Spending within allocated budget</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div><span><strong>Under Budget</strong> — Spending below allocation (may indicate slow delivery)</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div><span><strong>Over Budget</strong> — Spending exceeds allocation (requires attention)</span></div>
+</div>
+
+<div class="legend-card">
+  <h4>Assignment Source</h4>
+  <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div><span><strong>PM Programme of Action</strong> — Formal PoA strategy (80 items)</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div><span><strong>Cabinet Decision</strong> — Approved by Cabinet (122 items)</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div><span><strong>Ministry Strategic Plan</strong> — Self-reported departmental initiatives</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#22d3ee"></div><span><strong>Parastatal Performance</strong> — Public enterprise operations</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div><span><strong>Development Partner</strong> — Donor/partner-funded programmes</span></div>
+</div>
+
+</div>
+
+<div class="legend-grid">
+<div class="legend-card">
+  <h4>National Goals</h4>
+  <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div><span><strong>NDP</strong> — National Development Plan 2023/24–2027/28</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#d4a017"></div><span><strong>Nkwe Mandate</strong> — The King’s directive for disruptive economic transformation, issued through the 2023 Sibaya People’s Parliament</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#22d3ee"></div><span><strong>SDG</strong> — UN Sustainable Development Goals (2015–2030)</span></div>
+</div>
+
+<div class="legend-card">
+  <h4>Approved Status</h4>
+  <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div><span><strong>Approved</strong> — Formally authorised by Cabinet, PoA, or ministry leadership</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div><span><strong>Not Approved</strong> — Pending formal authorisation</span></div>
+</div>
+
+<div class="legend-card">
+  <h4>Data Sources</h4>
+  <div class="legend-item"><span>• 21 Ministry Annual Performance Reports (FY 2024/25)</span></div>
+  <div class="legend-item"><span>• Government Programme of Action 2024/25–2028/29</span></div>
+  <div class="legend-item"><span>• PCO Annual Report Table 1: 122 Cabinet Decisions</span></div>
+  <div class="legend-item"><span>• Parliament of Eswatini (parliament.gov.sz)</span></div>
+</div>
+</div>
+</div>
+
+<div class="poa-section">
+<h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--accent2);margin-bottom:16px;">Programme of Action — Six Objectives</h2>
+<div class="poa-grid">
+
+<div class="poa-card" style="border-left-color:#3b82f6">
+  <div class="obj-num" style="color:#3b82f6">1</div>
+  <h4 style="color:#3b82f6">Objective 1</h4>
+  <p><strong>Stimulate Exponential Inclusive Economic Growth of 12% by FY’29</strong></p>
+  <p style="margin-top:6px">Business-ready environment, FDI attraction, MSME development, fiscal management, sovereign wealth fund, financial system strengthening, mining optimisation, international relations</p>
+  <div class="budget" style="color:#3b82f6">Budget: E12.013 B</div>
+</div>
+
+<div class="poa-card" style="border-left-color:#22d3ee">
+  <div class="obj-num" style="color:#22d3ee">2</div>
+  <h4 style="color:#22d3ee">Objective 2</h4>
+  <p><strong>Improve Infrastructure and ICT Integration by FY’29</strong></p>
+  <p style="margin-top:6px">Roads, railway, airport, energy, water, ICT digitalisation, fibre optic, education and health infrastructure, smart cities, tourism and sports facilities</p>
+  <div class="budget" style="color:#22d3ee">Budget: E136.242 B</div>
+</div>
+
+<div class="poa-card" style="border-left-color:#a855f7">
+  <div class="obj-num" style="color:#a855f7">3</div>
+  <h4 style="color:#a855f7">Objective 3</h4>
+  <p><strong>Improve Human Capital (Health and Education) by FY’29</strong></p>
+  <p style="margin-top:6px">Education system reform, STEM curriculum, TVET transformation, disease prevention, HIV response, National Health Insurance Fund, workforce wellness</p>
+  <div class="budget" style="color:#a855f7">Budget: E7.649 B</div>
+</div>
+
+<div class="poa-card" style="border-left-color:#22c55e">
+  <div class="obj-num" style="color:#22c55e">4</div>
+  <h4 style="color:#22c55e">Objective 4</h4>
+  <p><strong>Improve Food Sovereignty and Sustainable Development by FY’29</strong></p>
+  <p style="margin-top:6px">Land tenure reform, agricultural productivity, agribusiness, climate adaptation, disaster risk management, environmental protection</p>
+  <div class="budget" style="color:#22c55e">Budget: E66.193 B</div>
+</div>
+
+<div class="poa-card" style="border-left-color:#f59e0b">
+  <div class="obj-num" style="color:#f59e0b">5</div>
+  <h4 style="color:#f59e0b">Objective 5</h4>
+  <p><strong>Strengthen Social Protection and Security by FY’29</strong></p>
+  <p style="margin-top:6px">GBV prevention, social security, disability inclusion, national social registry, pension fund reform, migration management, family heritage</p>
+  <div class="budget" style="color:#f59e0b">Budget: E738.9 M</div>
+</div>
+
+<div class="poa-card" style="border-left-color:#ef4444">
+  <div class="obj-num" style="color:#ef4444">6</div>
+  <h4 style="color:#ef4444">Objective 6</h4>
+  <p><strong>Enhance National Security and Law Enforcement by FY’29</strong></p>
+  <p style="margin-top:6px">Rule of law, anti-corruption, decentralisation, data protection, cyber security, crime prevention, government communication, country branding</p>
+  <div class="budget" style="color:#ef4444">Budget: E3.441 B</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</body>
+</html>
